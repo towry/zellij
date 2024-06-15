@@ -202,7 +202,7 @@ impl Display for LoadingIndication {
         match self.loading_from_hd_cache {
             Some(LoadingStatus::InProgress) => {
                 stringified.push_str(&format!("\n\r{}", bold.paint(loading_from_hd_cache_text)));
-                add_dots(&mut stringified);
+                // add_dots(&mut stringified);
             },
             Some(LoadingStatus::Success) => {
                 stringified.push_str(&format!("\n\r{loading_from_hd_cache_text}... {success}"));
@@ -210,7 +210,9 @@ impl Display for LoadingIndication {
             Some(LoadingStatus::NotFound) => {
                 stringified.push_str(&format!("\n\r{loading_from_hd_cache_text}... {not_found}"));
             },
-            None => {},
+            None => {
+                stringified.push_str("unknow state");
+            },
         }
         match self.compiling {
             Some(LoadingStatus::InProgress) => {
