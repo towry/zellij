@@ -992,7 +992,8 @@ fn edit_scrollback(env: &PluginEnv) {
 
 fn write(env: &PluginEnv, bytes: Vec<u8>) {
     let error_msg = || format!("failed to write in plugin {}", env.name());
-    let action = Action::Write(None, bytes, false);
+    // FIXME: define is_kitty_keyboard_protocol
+    let action = Action::Write(None, bytes, true);
     apply_action!(action, error_msg, env);
 }
 
